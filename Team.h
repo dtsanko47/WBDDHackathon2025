@@ -1,4 +1,4 @@
-File Edit Options Buffers Tools C++ Help
+
 #ifndef TEAM_H
 #define TEAM_H
 
@@ -8,7 +8,6 @@ File Edit Options Buffers Tools C++ Help
 
 using namespace std;
 
-//Team object, stored within linked list
 struct Team{
  public:
 
