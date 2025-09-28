@@ -26,7 +26,7 @@ public:
 
     int GetLGoals();
 
-    double GetGoalDif();
+    int GetGoalDif();
 
     //Getter for next node
     Node* GetNext();
