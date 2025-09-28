@@ -125,5 +125,6 @@ void getData() {
 
 int main() {
     getData();
+    Data data("hockey_data.txt");
     return 0;
 }
