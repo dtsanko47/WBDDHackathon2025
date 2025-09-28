@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// Website stores statistics for hockey teams from 1990-2011
+// URL: https://www.scrapethissite.com/pages/forms/?page_num=1
+
 // Receives downloaded data from a URL
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     // Appends all data into a single string
