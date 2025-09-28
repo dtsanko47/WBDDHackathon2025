@@ -1,24 +1,31 @@
-//
-// Created by danie on 9/27/2025.
-//
 
 #ifndef DATA_H
 #define DATA_H
 #include <iostream>
+#include <sstream>
 #include<vector>
-#include <string>
+#include<string>
+#include<fstream>
+#include<iomanip>
 #include "TeamsPerYear.h"
 using namespace std;
+const char DELIMITER = ',';
 
 class Data{
-    public:
-        Data(string);
+public:
+    Data(string);
 
-        void loadData();
+    void getData();
 
-    private:
-        string m_file;
-        vector<TeamsPerYear*> m_teams;
+    void loadData(string teamName, string year, string loses, string winPrecentage,
+                  string goals, string goalsAgainst, string goalDif);
+
+    void dataToHtml();
+
+private:
+    string m_file;
+    vector<TeamsPerYear*> m_teams;
+
 };
 
 
