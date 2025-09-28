@@ -8,13 +8,29 @@ using namespace std;
 class TeamsPerYear
 {
 public:
-    void InsertTeam(string name, int wins, int losses, double winDif, int goals, int lgoals, double goalDif, int position);
+    TeamsPerYear(int year);
+
+    ~TeamsPerYear();
+
+    void InsertTeam(Node* team);
 
     void DisplayYearOfTeams();
 
+    Node* getTeam(string name);
+
+    Node* getHead();
+
+    Node* setHead(Node* head);
+
+    int getTeamYear();
+
+    void setTeamYear(int year);
 
 private:
     Node* m_head; //Head (first node) in Document (linked list)
-    int m_lineCount; //Count of number of lines in Document
+    //    int m_lineCount; //Count of number of lines in Document
+    int m_teamCount;
+
+    int m_year;
 };
 #endif
