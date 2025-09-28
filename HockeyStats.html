@@ -103,7 +103,7 @@
 		
     </map>
 
-
+ <pre id="fileContent"></pre>
     <!-- Adjusts the suze of clickable regions so that it works on multiple interfaces as intended-->
     <script>
       function resizeMap() {
@@ -127,6 +127,13 @@
 
       window.addEventListener('resize', resizeMap);
       window.addEventListener('load', resizeMap);
+
+	fetch("teams_1990.txt")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("fileContent").textContent = data;
+    })
+    .catch(error => console.error("Error loading file:", error));
     </script>
   </body>
 </html>
