@@ -1,51 +1,58 @@
 #include "TeamsPerYear.h"
 
+TeamsPerYear::TeamsPerYear(int year) {
+    m_head == nullptr;
+    m_teamCount = 0;
+    m_year = year;
+}
 
-void TeamsPerYear::InsertTeam(string name, int wins, int losses, double winDif, int goals, int lgoals, double goalDif, int position) {
-    Node* newNode = new Node(name, wins,losses, winDif, goals, lgoals, goalDif);
+TeamsPerYear::~TeamsPerYear() {
+    Node* curr = m_head;
+    Node* prev = m_head;
+    while (curr != nullptr) {
+        curr = curr->GetNext();
+        delete prev;
+        prev = curr;
+    }
+    m_head = nullptr;
+    m_teamCount = 0;
+}
 
+
+void TeamsPerYear::InsertTeam(Node* team){
     // Insert at beginning or empty list
-    if (position == 1 || m_head == nullptr) {
-        newNode->SetNext(m_head);
-        m_head = newNode;
-    }
-    else {
-        Node* current = m_head; // Pointer to traverse the list
-        int currentPos = 1; // Tracks the  current position while traversing
+    Node* temp = m_head;
+    m_head = team;
+    team->SetNext(temp);
+    m_teamCount++;
+}
 
-        // Traverse to position before inserting
-        while (current->GetNext() != nullptr && currentPos < position - 1) {
-            current = current->GetNext();
-            currentPos++;
-        }
-
-        // Inserting
-        newNode->SetNext(current->GetNext());
-        current->SetNext(newNode);
+Node* TeamsPerYear::getTeam(string name) {
+    Node* current = m_head;
+    while (current->GetNext() != nullptr and current->GetName() != name) {
+        current = current->GetNext();
     }
-    m_lineCount++;
+    if(current->GetName() == name){
+        return current;
+    }
+    return nullptr;
+}
+
+Node* TeamsPerYear::getHead(){
+    return m_head;
+}
+
+Node* TeamsPerYear::setHead(Node* head){
+    m_head = head;
+}
+
+int TeamsPerYear::getTeamYear(){
+    return m_year;
+}
+
+void TeamsPerYear::setTeamYear(int year){
+    m_year = year;
 }
 
 
-// DisplayYearOfTeams
-// Prints the league and stats for the year
-void TeamsPerYear::DisplayYearOfTeams() {
-    // Check if document is  empty
-    if (m_lineCount == 0) {
-        cout << "No Data" << endl;
-    }
-    else {
-        Node* current = m_head; // Pointer to traverse the list
 
-        // Display all lines
-        for (int i = 1; i <= m_lineCount; i++) {
-            cout << i << ": " << current->GetName() << current->GetWins() <<
-                current->GetLosses() << current->GetWinDif() << current->GetGoals() <<
-                    current->GetLGoals() << current->GetGoalDif() << endl;
-            current = current->GetNext();
-        }
-    }
-}
-
-//Mayve destrucotr
-// Maybe a get element of something but u can get the elements by Node* value = m_head --> traverse till value->GetName() = value->Getname.getnext or wtvr and then value->GetWins() etc
