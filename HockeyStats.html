@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head section-->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Stats Map</title>
+    <style>
+      img {
+          max-width: 100%;
+          height: auto;
+	  display: block;
+	  margin: 0 auto;
+      }
+      
+      body {background-color: lightblue; }
+      h1 {font-family: Georgia, serif; }
+      p {font-family: Georgia, sans-serif; }
+    </style>
+  </head>
+
+  
+  <!--Body section-->
+  <body>
+    <h1 style="text-align: center;"> Hockey Statistics Map </h1>
+    <img id="HockeyMapImg" src="file:///C:/Users/damol/Downloads/Hockey%20World%20Pic.png"
+	 usemap="#HockeyMap" alt="HockeyMap" width="1300">
+
+    <p style="text-align: center;"> Select a team to see information on their performances from 1990 to 2011.
+      This information was compiled from another site, entered into an object within a linked list within a
+      vector, and outputted here in a easily readable format. For more information about the project, see the
+      following: </p> 
+    
+    <!--Mapping sites to the correct location on the map-->
+    <map name="HockeyMap" id="HockeyMap">
+      <area shape="circle" coords="310,25,25" href="https://www.nhl.com/oilers/" alt="Oilers">
+
+      <area shape="circle" coords="120,150,25" href="https://www.nhl.com/canucks/" alt="Canucks">
+
+      <area shape="circle" coords="95,525,25" href="https://www.nhl.com/sharks" alt="Sharks">
+
+      <area shape="circle" coords="160,590,25" href="https://www.nhl.com/kings" alt="Kings">
+
+      <area shape="circle" coords="300,100,25" href="https://www.nhl.com/flames" alt="Flames">
+
+      <area shape="circle" coords="200,615,25" href="https://www.nhl.com/ducks" alt="Ducks">
+
+      <area shape="circle" coords="310,615,25" href="https://en.wikipedia.org/wiki/Arizona_Coyotes" alt="Coyotes">
+
+      <area shape="circle" coords="410,500,25" href="https://www.nhl.com/bluejackets" alt="BlueJackets">
+
+      <area shape="circle" coords="460,460,25" href="https://www.nhl.com/avalanche" alt="Avalanche">
+
+      <area shape="circle" coords="640,615,25" href="https://www.nhl.com/stars" alt="Stars">
+
+      <area shape="circle" coords="630,140,25" href="https://www.nhl.com/jets" alt="Jets">
+
+      <area shape="circle" coords="660,230,25" href="https://en.wikipedia.org/wiki/Minnesota_North_Stars" alt="NS">
+      <area shape="circle" coords="700,270,25" href="https://www.nhl.com/wild" alt="Wild">
+
+      <area shape="circle" coords="750,470,25" href="https://www.nhl.com/blues" alt="Blues">
+
+      <area shape="circle" coords="840,525,25" href="https://www.nhl.com/predators" alt="Predators">
+
+      <area shape="circle" coords="845,370,25" href="https://www.nhl.com/blackhawks" alt="Blackhawks">
+
+      <area shape="circle" coords="970,370,25" href="https://www.nhl.com/redwings" alt="RedWings">
+
+    </map>
+
+
+    <!-- Adjusts the suze of clickable regions so that it works on multiple interfaces as intended-->
+    <script>
+      function resizeMap() {
+          const img = document.getElementById('HockeyMapImg');
+          const map = document.getElementById('HockeyMap');
+          const areas = map.getElementsByTagName('area');
+
+          const naturalWidth = 1300;
+          const scale = img.clientWidth / naturalWidth;
+
+          for (let i = 0; i < areas.length; i++) {
+              let originalCoords = areas[i].getAttribute('data-coords');
+              if (!originalCoords) {
+                  originalCoords = areas[i].coords;
+                  areas[i].setAttribute('data-coords', originalCoords);
+              }
+              const coords = originalCoords.split(',').map(c => Math.round(c * scale));
+              areas[i].coords = coords.join(',');
+          }
+      }
+
+      window.addEventListener('resize', resizeMap);
+      window.addEventListener('load', resizeMap);
+    </script>
+  </body>
+</html>
